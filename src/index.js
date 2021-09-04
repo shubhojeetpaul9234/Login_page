@@ -35,7 +35,6 @@ app.post('/api/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password)
     
     if(isMatch) {
-        console.log('here')
         const token = jwt.sign({
             id: user._id,
             email: user.email 
@@ -64,7 +63,6 @@ app.post('/api/register', async(req, res) => {
             email, 
             password
         })
-        console.log('success', response)
     } catch(error) {
         //Code for duplicate 
         if(error.code === 11000) {
