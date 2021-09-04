@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <form action="/login.html"><button type="submit">Back to Login</button></form>
+    </body>
+    <script>
+        check()
+
+        async function check(){
+            const result = await fetch('/api/home', {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    //Recieve token
+                    token: localStorage.getItem('token')
+                })
+            }).then((res) => res.json())
+
+            if(result.status === 'ok') {
+                alert('Token is Valid')
+            } else {
+                alert(result.error)
+            }
+        }
+    </script>
+</html>
